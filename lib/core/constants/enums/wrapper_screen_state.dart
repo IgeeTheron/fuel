@@ -1,0 +1,4 @@
+enum WrapperScreenState {
+  authentication,
+  mainHome,
+}
