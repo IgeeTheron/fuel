@@ -64,6 +64,45 @@ dart run build_runner watch --delete-conflicting-outputs
 
 -----
 
+## 🛠️ Environment Variables
+
+This project uses **environment variables** to manage different configurations for `staging` and `production` environments. These variables are stored in dedicated files within the `keys/env/` directory.
+
+### 1. Creating the Environment Files
+
+You need to create two new files to store the environment variables for each build configuration.
+
+- **`keys/env/.env-staging`**: For the staging environment.
+- **`keys/env/.env-production`**: For the production environment.
+
+You can create these files manually or by using the following commands in your terminal:
+
+```bash
+touch keys/env/.env-staging
+touch keys/env/.env-production
+```
+
+### 2. Adding Variables to the Files
+Once created, you must add the required variables to each file. Ensure you fill in the values for your specific environment.
+
+**File:** `keys/env/.env-staging`
+```bash
+base_url = "https://api.staging.fuelapp.com"
+key_tokens = "your_staging_key_tokens"
+user_cache_key = "staging_user_cache"
+```
+
+**File:** `keys/env/.env-production`
+```bash
+base_url = "https://api.production.fuelapp.com"
+key_tokens = "your_production_key_tokens"
+user_cache_key = "production_user_cache"
+```
+
+**Note:** The example values provided above are placeholders. You should replace them with the actual values for your `staging` and `production` environments.
+
+-----
+
 ## 🔧 Build Instructions for iOS and Android
 
 - **Obfuscation:** Builds are not obfuscated by default. To enable obfuscation and upload debug symbols to Sentry, add the `--obfuscate` flag to the end of the command.
