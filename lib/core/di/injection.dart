@@ -10,7 +10,9 @@ import 'package:fuel/core/constants/enums/app_environment.dart';
 import 'package:fuel/core/utils/toast_service.dart';
 import 'package:fuel/data/models/user_management/auth_token_model.dart';
 import 'package:fuel/data/providers/authentication_service.dart';
+import 'package:fuel/data/providers/depot_service.dart';
 import 'package:fuel/data/providers/user_service.dart';
+import 'package:fuel/data/repositories/depot_repository.dart';
 import 'package:fuel/data/repositories/user_management_repository.dart';
 import 'package:fuel/data/secure_storage/secure_storage.dart';
 import 'package:general_utilities/general_utilities.dart';
@@ -169,6 +171,10 @@ void _registerApiServices() {
   getIt.registerLazySingleton<UserService>(
     () => UserService(authenticatedDio: getIt<Dio>(instanceName: 'authenticatedDio')),
   );
+
+  getIt.registerLazySingleton<DepotService>(
+    () => DepotService(authenticatedDio: getIt<Dio>(instanceName: 'authenticatedDio')),
+  );
 }
 
 void _registerRepositories() {
@@ -178,6 +184,12 @@ void _registerRepositories() {
       userService: getIt<UserService>(),
       cacheClient: getIt<CacheClient>(),
       secureStorage: getIt<SecureStorage>(),
+    ),
+  );
+
+  getIt.registerLazySingleton<DepotRepository>(
+    () => DepotRepository(
+      depotService: getIt<DepotService>(),
     ),
   );
 }

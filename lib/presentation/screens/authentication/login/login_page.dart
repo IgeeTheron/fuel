@@ -36,7 +36,7 @@ class LoginPage extends StatelessWidget {
               );
           }
         },
-        child: LoginView(),
+        child: const LoginView(),
       ),
     );
   }

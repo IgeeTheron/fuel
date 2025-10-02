@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fuel/core/di/injection.dart';
 import 'package:fuel/core/theme/app_theme.dart';
+import 'package:fuel/data/repositories/depot_repository.dart';
 import 'package:fuel/data/repositories/user_management_repository.dart';
 import 'package:fuel/logic/bloc/authentication/authentication_bloc.dart';
 import 'package:fuel/logic/cubit/connectivity/internet_cubit.dart';
@@ -28,6 +29,9 @@ class Fuel extends StatelessWidget {
       providers: [
         RepositoryProvider<UserManagementRepository>.value(
           value: getIt<UserManagementRepository>(),
+        ),
+        RepositoryProvider<DepotRepository>.value(
+          value: getIt<DepotRepository>(),
         ),
       ],
       child: MultiBlocProvider(
