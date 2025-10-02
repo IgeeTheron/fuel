@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fuel/core/exceptions/exceptions.dart';
+import 'package:fuel/data/models/depot/account_balance_model.dart';
 import 'package:fuel/data/models/depot/depot_model.dart';
 import 'package:fuel/data/models/depot/depot_price_model.dart';
 import 'package:fuel/data/providers/depot_service.dart';
@@ -43,6 +44,22 @@ class DepotRepository {
       PrintColor.red(e);
       PrintColor.red(st);
       throw const ServerException(message: "We're having trouble fetching the depots pricing. Please try again later.");
+    }
+  }
+
+  Future<AccountBalanceModel> getAccountBalance() async {
+    try {
+      final Response response = await _depotService.getAccountBalance();
+      return AccountBalanceModel.fromJson(response.data['result']);
+    } on DioException catch (e) {
+      if (e.error is AppException) throw e.error as AppException;
+      throw ServerException(originalException: e);
+    } catch (e, st) {
+      // TODO: Implement Crash reports
+      // await FirebaseCrashlytics.instance.recordError(e, st);
+      PrintColor.red(e);
+      PrintColor.red(st);
+      throw const ServerException(message: "We're having trouble fetching your account balance. Please try again later.");
     }
   }
 }

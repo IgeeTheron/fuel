@@ -6,6 +6,7 @@ import 'package:fuel/data/models/depot/depot_model.dart';
 import 'package:fuel/data/models/depot/depot_price_model.dart';
 import 'package:fuel/logic/bloc/authentication/authentication_bloc.dart';
 import 'package:fuel/logic/cubit/home/home_cubit.dart';
+import 'package:fuel/presentation/screens/home/depot_details/depot_details_page.dart';
 import 'package:fuel/presentation/widgets/cards/depot_price_card.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shimmer/shimmer.dart';
@@ -105,6 +106,7 @@ class HomeView extends StatelessWidget {
                         return DepotPriceCard(
                           depot: state.depots[index],
                           depotPrices: depotPrices,
+                          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => DepotDetailsPage(depot: state.depots[index]))),
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {

@@ -14,4 +14,8 @@ class DepotService {
   Future<Response> getPricing() async {
     return _authenticatedDio.get("/qaapi/api/Api/GetPricing");
   }
+
+  Future<Response> getAccountBalance() async {
+    return _authenticatedDio.get("/qaapi/api/Api/AccountBalance");
+  }
 }

@@ -11,6 +11,8 @@
 - Implemented depot and pricing API
 - Implemented depot model, service and repository
 - Implemented home screen to display depots with the prices
+- Implemented AccountBalance API
+- Implemented details screen where account balanced is fetched and displayed
 
 ---
 ## ChangeLog Entry
