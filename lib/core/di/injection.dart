@@ -39,9 +39,9 @@ void _registerNetworkClients() {
   // final String clientSecret = dotenv.get('client_secret');
 
   final BaseOptions baseOptions = BaseOptions(
-    baseUrl: "https://$baseUrl",
+    baseUrl: "http://$baseUrl",
     connectTimeout: const Duration(seconds: 15),
-    receiveTimeout: const Duration(seconds: 15),
+    receiveTimeout: const Duration(seconds: 30),
     sendTimeout: const Duration(seconds: 15),
     headers: {'Accept': 'application/json'},
   );
@@ -80,7 +80,7 @@ void _registerNetworkClients() {
           return AuthTokenModel.empty;
         },
         tokenHeader: (token) {
-          return {"Authorization": "${token.tokenType} ${token.accessToken}"};
+          return {"Authorization": "${token.tokenType} ${token.token}"};
         },
       );
     },

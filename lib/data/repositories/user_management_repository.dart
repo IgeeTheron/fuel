@@ -13,6 +13,7 @@ import 'package:fuel/data/providers/authentication_service.dart';
 import 'package:fuel/data/providers/user_service.dart';
 import 'package:fuel/data/secure_storage/secure_storage.dart';
 import 'package:fuel/presentation/app/app.dart';
+import 'package:general_utilities/general_utilities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserManagementRepository {
@@ -42,8 +43,21 @@ class UserManagementRepository {
       // _cacheClient.write(key: userCacheKey, value: user);
       // yield user;
 
-      _cacheClient.write(key: userCacheKey, value: UserModel.empty);
-      yield UserModel.empty;
+      AuthTokenModel? authTokenModel = await getIt<Fresh<AuthTokenModel>>().token;
+
+      if (authTokenModel != null) {
+        UserModel dummyData = const UserModel(
+          id: 1,
+          fullName: "MobileTC",
+          email: "igee@test.com",
+        );
+
+        _cacheClient.write(key: userCacheKey, value: dummyData);
+        yield dummyData;
+      } else {
+        _cacheClient.write(key: userCacheKey, value: UserModel.empty);
+        yield UserModel.empty;
+      }
     } catch (_) {
       _cacheClient.write(key: userCacheKey, value: UserModel.empty);
       yield UserModel.empty;
@@ -80,6 +94,8 @@ class UserManagementRepository {
     } catch (e, st) {
       // TODO: Implement Crash reports
       // await FirebaseCrashlytics.instance.recordError(e, st);
+      PrintColor.red(e);
+      PrintColor.red(st);
       throw const ServerException(message: "We're having trouble loading your information right now. Please try again later.");
     }
   }
@@ -108,6 +124,8 @@ class UserManagementRepository {
     } catch (e, st) {
       // TODO: Implement Crash reports
       // await FirebaseCrashlytics.instance.recordError(e, st);
+      PrintColor.red(e);
+      PrintColor.red(st);
       await getIt<TokenStorage<AuthTokenModel>>().delete();
       throw const ServerException(message: "We're having trouble registering you right now. Please try again later.");
     }
@@ -150,6 +168,8 @@ class UserManagementRepository {
     } catch (e, st) {
       // TODO: Implement Crash reports
       // await FirebaseCrashlytics.instance.recordError(e, st);
+      PrintColor.red(e);
+      PrintColor.red(st);
       await getIt<TokenStorage<AuthTokenModel>>().delete();
       throw const ServerException(message: "We're having trouble logging you in right now. Please try again later.");
     }
@@ -165,6 +185,8 @@ class UserManagementRepository {
     } catch (e, st) {
       // TODO: Implement Crash reports
       // await FirebaseCrashlytics.instance.recordError(e, st);
+      PrintColor.red(e);
+      PrintColor.red(st);
       throw const ServerException(message: "We're having trouble sending the email to reset your password. Please try again later.");
     }
   }
@@ -179,6 +201,8 @@ class UserManagementRepository {
     } catch (e, st) {
       // TODO: Implement Crash reports
       // await FirebaseCrashlytics.instance.recordError(e, st);
+      PrintColor.red(e);
+      PrintColor.red(st);
       throw const ServerException(message: "We're having resending the verification e-mail. Please try again later.");
     }
   }
@@ -202,6 +226,8 @@ class UserManagementRepository {
     } catch (e, st) {
       // TODO: Implement Crash reports
       // await FirebaseCrashlytics.instance.recordError(e, st);
+      PrintColor.red(e);
+      PrintColor.red(st);
       throw const ServerException(message: "We're having trouble updating your information right now. Please try again later.");
     }
   }
@@ -222,6 +248,8 @@ class UserManagementRepository {
     } catch (e, st) {
       // TODO: Implement Crash reports
       // await FirebaseCrashlytics.instance.recordError(e, st);
+      PrintColor.red(e);
+      PrintColor.red(st);
       throw const ServerException(message: "We're having trouble changing your password right now. Please try again later.");
     }
   }
@@ -257,6 +285,8 @@ class UserManagementRepository {
     } catch (e, st) {
       // TODO: Implement Crash reports
       // await FirebaseCrashlytics.instance.recordError(e, st);
+      PrintColor.red(e);
+      PrintColor.red(st);
       throw const ServerException(message: "Failed to log out user.");
     }
   }
@@ -282,7 +312,9 @@ class UserManagementRepository {
     } catch (e, st) {
       // TODO: Implement Crash reports
       // await FirebaseCrashlytics.instance.recordError(e, st);
-      throw const ServerException(message: "messages.userManagementRepository.deleteUserError");
+      PrintColor.red(e);
+      PrintColor.red(st);
+      throw const ServerException(message: "We're having trouble deleting your account right now. Please try again later.");
     }
   }
 

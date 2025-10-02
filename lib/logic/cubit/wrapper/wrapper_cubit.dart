@@ -12,8 +12,6 @@ part 'wrapper_state.dart';
 
 class WrapperCubit extends Cubit<WrapperState> {
   final AuthenticationBloc authenticationBloc;
-  StreamSubscription? onboardingSubscription;
-  StreamSubscription? initialFlowSubscription;
   StreamSubscription? authenticationSubscription;
 
   static AuthenticationState? _previousAuthenticationState;
@@ -53,7 +51,7 @@ class WrapperCubit extends Cubit<WrapperState> {
         wrapperScreenState: WrapperScreenState.mainHome,
       );
     } else {
-      return const WrapperState(wrapperScreenState: WrapperScreenState.authentication);
+      return const WrapperState(wrapperScreenState: WrapperScreenState.login);
     }
   }
 
@@ -63,7 +61,7 @@ class WrapperCubit extends Cubit<WrapperState> {
     }
     emit(
       const WrapperState(
-        wrapperScreenState: WrapperScreenState.authentication,
+        wrapperScreenState: WrapperScreenState.login,
       ),
     );
   }
@@ -77,8 +75,6 @@ class WrapperCubit extends Cubit<WrapperState> {
 
   @override
   Future<void> close() {
-    onboardingSubscription?.cancel();
-    initialFlowSubscription?.cancel();
     authenticationSubscription?.cancel();
     return super.close();
   }

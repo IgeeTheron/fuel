@@ -3,7 +3,8 @@ import 'package:fuel/core/utils/json_utlis.dart';
 
 // TODO: Implement full Oauth2 token system
 class AuthTokenModel extends Equatable {
-  final String accessToken;
+  // final String accessToken;
+  final String token;
 
   // final String refreshToken;
   final String tokenType;
@@ -11,7 +12,7 @@ class AuthTokenModel extends Equatable {
   // final int expiresIn;
 
   const AuthTokenModel({
-    required this.accessToken,
+    required this.token,
     // required this.refreshToken,
     required this.tokenType,
     // required this.expiresIn,
@@ -20,7 +21,7 @@ class AuthTokenModel extends Equatable {
   static const AuthTokenModel empty = AuthTokenModel(
     tokenType: '',
     // expiresIn: 0,
-    accessToken: '',
+    token: '',
     // refreshToken: '',
   );
 
@@ -50,10 +51,10 @@ class AuthTokenModel extends Equatable {
     JsonUtils.assertJsonKeys(json: json, expectedTypes: expectedTypes);
 
     return AuthTokenModel(
-      accessToken: json["token"],
+      token: json["token"],
       // accessToken: json["access_token"],
       // refreshToken: json["refresh_token"],
-      tokenType: json["token_type"],
+      tokenType: /*json["token_type"]*/ "Bearer",
       // expiresIn: (convert) ? DateTime.now().millisecondsSinceEpoch + ((json["expires_in"] as int) * 1000) : json["expires_in"],
     );
   }
@@ -61,25 +62,25 @@ class AuthTokenModel extends Equatable {
   Map<String, dynamic> toJson() => {
         "token_type": tokenType,
         // "expires_in": expiresIn,
-        "access_token": accessToken,
+        "token": token,
         // "refresh_token": refreshToken,
       };
 
   AuthTokenModel copyWith({
-    String? accessToken,
+    String? token,
     String? tokenType,
   }) {
     return AuthTokenModel(
-      accessToken: accessToken ?? this.accessToken,
+      token: token ?? this.token,
       tokenType: tokenType ?? this.tokenType,
     );
   }
 
   @override
-  List<Object> get props => [accessToken, tokenType];
+  List<Object> get props => [token, tokenType];
 
   @override
   String toString() {
-    return 'AuthTokenModel{accessToken: $accessToken, tokenType: $tokenType}';
+    return 'AuthTokenModel{token: $token, tokenType: $tokenType}';
   }
 }

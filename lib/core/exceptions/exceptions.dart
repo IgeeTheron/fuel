@@ -27,7 +27,7 @@ abstract class AppException implements Exception {
 class ServerException extends AppException {
   const ServerException({String? message, super.originalException})
       : super(
-          message: message ?? "messages.exceptions.generic.serverError",
+          message: message ?? "A server error occurred. Please try again later.",
         );
 }
 
@@ -38,7 +38,7 @@ class ServerException extends AppException {
 class NetworkException extends AppException {
   const NetworkException({String? message, super.originalException})
       : super(
-          message: message ?? "messages.exceptions.generic.networkError",
+          message: message ?? "Please check your network connection and try again.",
         );
 }
 
@@ -51,7 +51,7 @@ class NetworkException extends AppException {
 class CertificatePinningException extends AppException {
   const CertificatePinningException({String? message, super.originalException})
       : super(
-          message: message ?? "messages.exceptions.generic.certificatePinning",
+          message: message ?? "A secure connection could not be established. To protect your data, this request has been blocked. Please check your network or try again later.",
         );
 }
 
@@ -62,7 +62,7 @@ class CertificatePinningException extends AppException {
 class NotFoundException extends AppException {
   const NotFoundException({String? message, super.originalException})
       : super(
-          message: message ?? "messages.exceptions.generic.notFound",
+          message: message ?? "The requested item could not be found.",
         );
 }
 
@@ -73,7 +73,7 @@ class NotFoundException extends AppException {
 class UnauthorizedException extends AppException {
   const UnauthorizedException({String? message, super.originalException})
       : super(
-          message: message ?? "messages.exceptions.generic.unauthorized",
+          message: message ?? "Your session has expired. Please log in again.",
         );
 }
 
@@ -85,7 +85,7 @@ class UnauthorizedException extends AppException {
 class ForbiddenException extends AppException {
   const ForbiddenException({String? message, super.originalException})
       : super(
-          message: message ?? "messages.exceptions.generic.forbidden",
+          message: message ?? "You do not have permission to perform this action.",
         );
 }
 
@@ -98,7 +98,7 @@ class ForbiddenException extends AppException {
 class ConflictException extends AppException {
   const ConflictException({String? message, super.originalException})
       : super(
-          message: message ?? "messages.exceptions.generic.conflict",
+          message: message ?? "There was a conflict with the current data. Please refresh and try again.",
         );
 }
 
@@ -116,7 +116,7 @@ class ValidationException extends AppException {
 
   const ValidationException({String? message, this.errors = const {}, super.originalException})
       : super(
-          message: message ?? "messages.exceptions.generic.validation",
+          message: message ?? "The information provided was invalid.",
         );
 }
 
@@ -129,6 +129,6 @@ class ValidationException extends AppException {
 class RequestCancelledException extends AppException {
   const RequestCancelledException({String? message, super.originalException})
       : super(
-          message: message ?? "messages.exceptions.generic.requestCancelled",
+          message: message ?? "The request was cancelled.",
         );
 }
