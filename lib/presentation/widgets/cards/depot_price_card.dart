@@ -5,6 +5,10 @@ import 'package:fuel/data/models/depot/depot_price_model.dart';
 import 'package:intl/intl.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+// This card is created to take in the depot and prices and display any data that is available
+// I have only setup a few of the data to be displayed like active status and description
+// This card can also be changed to take in more specific values if the full depot model is not always available or provided
+// A assumed that it will always expect a full depot model
 class DepotPriceCard extends StatelessWidget {
   final DepotModel depot;
   final List<DepotPriceModel> depotPrices;
@@ -90,6 +94,7 @@ class DepotPriceCard extends StatelessWidget {
                           ),
                         ],
                 ),
+                const Divider(),
                 Text(
                   'Meta:',
                   style: themeData.textTheme.bodyLarge?.copyWith(
