@@ -10,6 +10,7 @@
 - Implemented login system with remember me logic
 - Implemented depot and pricing API
 - Implemented depot model, service and repository
+- Implemented home screen to display depots with the prices
 
 ---
 ## ChangeLog Entry

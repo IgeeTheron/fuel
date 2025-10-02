@@ -15,7 +15,8 @@ class DepotRepository {
   Future<List<DepotModel>> getDepots() async {
     try {
       final Response response = await _depotService.getDepots();
-      return (response.data as List).map((json) => DepotModel.fromJson(json)).toList();
+      final List<dynamic> resultList = response.data['result'] as List<dynamic>;
+      return resultList.map((json) => DepotModel.fromJson(json)).toList();
     } on DioException catch (e) {
       if (e.error is AppException) throw e.error as AppException;
       throw ServerException(originalException: e);
@@ -31,7 +32,8 @@ class DepotRepository {
   Future<List<DepotPriceModel>> getPricing() async {
     try {
       final Response response = await _depotService.getPricing();
-      return (response.data as List).map((json) => DepotPriceModel.fromJson(json)).toList();
+      final List<dynamic> prices = response.data['result']['prices'] as List<dynamic>;
+      return prices.map((json) => DepotPriceModel.fromJson(json)).toList();
     } on DioException catch (e) {
       if (e.error is AppException) throw e.error as AppException;
       throw ServerException(originalException: e);

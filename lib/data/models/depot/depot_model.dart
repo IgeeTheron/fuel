@@ -8,29 +8,29 @@ class DepotModel extends Equatable {
   final bool active;
   final String description;
   final String location;
-  final String address;
+  final String? address;
   final String pastelCode;
-  final String itemCode;
-  final String itemDescription;
-  final String address1;
-  final String address2;
-  final String address3;
-  final String address4;
+  final String? itemCode;
+  final String? itemDescription;
+  final String? address1;
+  final String? address2;
+  final String? address3;
+  final String? address4;
   final String geo;
   final String googleMaps;
   final String hoursText;
   final String extraInfo;
-  final String directions;
-  final String contact;
-  final String contactNumber;
-  final String email;
+  final String? directions;
+  // final String contact;
+  // final String contactNumber;
+  // final String email;
   final DateTime? createdDate;
-  final String orderSmsNotification;
+  final String? orderSmsNotification;
   final bool allowFill;
   final bool isDepotOutOfStock;
-  final String outOfStockMessage;
-  final String latitude;
-  final String longitude;
+  final String? outOfStockMessage;
+  final String? latitude;
+  final String? longitude;
   final String country;
 
   const DepotModel({
@@ -39,30 +39,30 @@ class DepotModel extends Equatable {
     required this.active,
     required this.description,
     required this.location,
-    required this.address,
     required this.pastelCode,
-    required this.itemCode,
-    required this.itemDescription,
-    required this.address1,
-    required this.address2,
-    required this.address3,
-    required this.address4,
     required this.geo,
     required this.googleMaps,
     required this.hoursText,
     required this.extraInfo,
-    required this.directions,
-    required this.contact,
-    required this.contactNumber,
-    required this.email,
-    required this.orderSmsNotification,
+    // required this.contact,
+    // required this.contactNumber,
+    // required this.email,
     required this.allowFill,
     required this.isDepotOutOfStock,
-    required this.outOfStockMessage,
-    required this.latitude,
-    required this.longitude,
     required this.country,
+    this.address,
+    this.address1,
+    this.address2,
+    this.address3,
+    this.address4,
+    this.itemCode,
+    this.itemDescription,
+    this.directions,
     this.createdDate,
+    this.orderSmsNotification,
+    this.outOfStockMessage,
+    this.latitude,
+    this.longitude,
   });
 
   static const DepotModel empty = DepotModel(
@@ -71,28 +71,16 @@ class DepotModel extends Equatable {
     active: false,
     description: '',
     location: '',
-    address: '',
     pastelCode: '',
-    itemCode: '',
-    itemDescription: '',
-    address1: '',
-    address2: '',
-    address3: '',
-    address4: '',
     geo: '',
     googleMaps: '',
     hoursText: '',
     extraInfo: '',
-    directions: '',
-    contact: '',
-    contactNumber: '',
-    email: '',
-    orderSmsNotification: '',
+    // contact: '',
+    // contactNumber: '',
+    // email: '',
     allowFill: false,
     isDepotOutOfStock: false,
-    outOfStockMessage: '',
-    latitude: '',
-    longitude: '',
     country: '',
   );
 
@@ -107,29 +95,29 @@ class DepotModel extends Equatable {
       "active": [bool],
       "description": [String],
       "location": [String],
-      "address": [String],
+      "address": [null, String],
       "pastelCode": [String],
-      "itemCode": [String],
-      "itemDescription": [String],
-      "address1": [String],
-      "address2": [String],
-      "address3": [String],
-      "address4": [String],
+      "itemCode": [null, String],
+      "itemDescription": [null, String],
+      "address1": [null, String],
+      "address2": [null, String],
+      "address3": [null, String],
+      "address4": [null, String],
       "geo": [String],
       "googleMaps": [String],
       "hoursText": [String],
       "extraInfo": [String],
-      "directions": [String],
-      "contact": [String],
-      "contactNumber": [String],
-      "email": [String],
+      "directions": [null, String],
+      // "contact": [String],
+      // "contactNumber": [String],
+      // "email": [String],
       "createdDate": [null, String],
-      "orderSmsNotification": [String],
+      "orderSmsNotification": [null, String],
       "allowFill": [bool],
       "isDepotOutOfStock": [bool],
-      "outOfStockMessage": [String],
-      "latitude": [String],
-      "longitude": [String],
+      "outOfStockMessage": [null, String],
+      "latitude": [null, String],
+      "longitude": [null, String],
       "country": [String],
     };
 
@@ -154,9 +142,9 @@ class DepotModel extends Equatable {
       hoursText: json["hoursText"],
       extraInfo: json["extraInfo"],
       directions: json["directions"],
-      contact: json["contact"],
-      contactNumber: json["contactNumber"],
-      email: json["email"],
+      // contact: json["contact"],
+      // contactNumber: json["contactNumber"],
+      // email: json["email"],
       createdDate: (json["createdDate"] == null) ? null : DateTime.parse(json["createdDate"]),
       orderSmsNotification: json["orderSmsNotification"],
       allowFill: json["allowFill"],
@@ -187,9 +175,9 @@ class DepotModel extends Equatable {
         "hoursText": hoursText,
         "extraInfo": extraInfo,
         "directions": directions,
-        "contact": contact,
-        "contactNumber": contactNumber,
-        "email": email,
+        // "contact": contact,
+        // "contactNumber": contactNumber,
+        // "email": email,
         "createdDate": createdDate?.toIso8601String(),
         "orderSmsNotification": orderSmsNotification,
         "allowFill": allowFill,
@@ -219,9 +207,6 @@ class DepotModel extends Equatable {
     String? hoursText,
     String? extraInfo,
     String? directions,
-    String? contact,
-    String? contactNumber,
-    String? email,
     DateTime? createdDate,
     String? orderSmsNotification,
     bool? allowFill,
@@ -250,9 +235,6 @@ class DepotModel extends Equatable {
       hoursText: hoursText ?? this.hoursText,
       extraInfo: extraInfo ?? this.extraInfo,
       directions: directions ?? this.directions,
-      contact: contact ?? this.contact,
-      contactNumber: contactNumber ?? this.contactNumber,
-      email: email ?? this.email,
       createdDate: createdDate ?? this.createdDate,
       orderSmsNotification: orderSmsNotification ?? this.orderSmsNotification,
       allowFill: allowFill ?? this.allowFill,
@@ -284,9 +266,6 @@ class DepotModel extends Equatable {
         hoursText,
         extraInfo,
         directions,
-        contact,
-        contactNumber,
-        email,
         createdDate,
         orderSmsNotification,
         allowFill,
@@ -299,6 +278,6 @@ class DepotModel extends Equatable {
 
   @override
   String toString() {
-    return 'DepotModel{id: $id, name: $name, active: $active, description: $description, location: $location, address: $address, pastelCode: $pastelCode, itemCode: $itemCode, itemDescription: $itemDescription, address1: $address1, address2: $address2, address3: $address3, address4: $address4, geo: $geo, googleMaps: $googleMaps, hoursText: $hoursText, extraInfo: $extraInfo, directions: $directions, contact: $contact, contactNumber: $contactNumber, email: $email, createdDate: $createdDate, orderSmsNotification: $orderSmsNotification, allowFill: $allowFill, isDepotOutOfStock: $isDepotOutOfStock, outOfStockMessage: $outOfStockMessage, latitude: $latitude, longitude: $longitude, country: $country}';
+    return 'DepotModel{id: $id, name: $name, active: $active, description: $description, location: $location, address: $address, pastelCode: $pastelCode, itemCode: $itemCode, itemDescription: $itemDescription, address1: $address1, address2: $address2, address3: $address3, address4: $address4, geo: $geo, googleMaps: $googleMaps, hoursText: $hoursText, extraInfo: $extraInfo, directions: $directions, createdDate: $createdDate, orderSmsNotification: $orderSmsNotification, allowFill: $allowFill, isDepotOutOfStock: $isDepotOutOfStock, outOfStockMessage: $outOfStockMessage, latitude: $latitude, longitude: $longitude, country: $country}';
   }
 }
