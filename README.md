@@ -66,25 +66,6 @@ repomix -o "path/to/your/project_context.md"
 
 -----
 
-## 📦 Code Generation (ObjectBox)
-This project uses ObjectBox as a local database. Whenever you make changes to model files (e.g., `lib/data/models/book/local_book_model.dart`), you must regenerate the necessary code using `build_runner`.
-
-### One-Time Build
-To run a single build that generates the required files, use the following command. The `--delete-conflicting-outputs` flag is recommended to prevent potential conflicts with old files.
-
-```bash
-dart run build_runner build --delete-conflicting-outputs
-```
-
-### Watch for Changes
-If you are actively developing and want the code to regenerate automatically every time you save a model file, use the `watch` command. This will keep running in your terminal until you stop it (`Ctrl + C`).
-
-```bash
-dart run build_runner watch --delete-conflicting-outputs
-```
-
------
-
 ## 🏃 How to Run the App
 
 Before you run the application, ensure you have set up the environment files as described in the **"Environment Variables"** section of this Readme.
