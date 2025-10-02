@@ -6,6 +6,27 @@
 
 Welcome to Fuel\! This document provides essential information for developers, including instructions on how to export the project's context and guidelines for maintaining the changelog.
 
+-----
+
+## 🏗️ Architecture and Technical Overview
+
+This project is a Flutter application designed with a focus on clean architecture and maintainable code. Key technical choices and structural patterns include:
+
+### 1. Architectural Pattern
+The application's codebase is structured following a **BLoC (Business Logic Component) pattern**. This approach separates the user interface (UI) from the business logic, ensuring that the app's state is managed predictably and that UI components are easily testable.
+
+### 2. State and Data Management
+The project uses **BLoC** for state management, with dedicated `blocs` managing the state for different features. Data persistence is handled using two primary storage solutions based on the data's sensitivity:
+- **`shared_preferences`**: Used for storing non-sensitive, lightweight data like user preferences or settings. The data is saved in a key-value format and is not encrypted.
+- **`flutter_secure_storage`**: Employed for securely storing sensitive data such as API tokens, user credentials, or other confidential information. This package uses platform-specific secure storage (Keychain on iOS and Keystore on Android) to ensure data is encrypted and protected.
+
+### 3. Build and Deployment
+The application's build process is configured to support multiple environments and configurations:
+- **Flavors**: The app uses `staging` and `production` flavors, which are configured to use different environment-specific variables stored in separate `.env` files.
+- **Obfuscation**: For release builds, the project uses code **obfuscation** to protect intellectual property and upload debug symbols to **Sentry** for crash reporting and performance monitoring.
+
+-----
+
 ## 🚀 Project Context Exporter (`repomix`)
 
 This section explains how to use the `repomix` tool to generate a single, comprehensive context file of this project. This is useful for sharing, archiving, or feeding the project's structure and code to AI models.
@@ -61,6 +82,21 @@ If you are actively developing and want the code to regenerate automatically eve
 ```bash
 dart run build_runner watch --delete-conflicting-outputs
 ```
+
+-----
+
+## 🏃 How to Run the App
+
+Before you run the application, ensure you have set up the environment files as described in the **"Environment Variables"** section of this Readme.
+
+This project uses **flavors** to manage different build configurations. To run the application, you must first select the desired scheme (or flavor) in your IDE.
+
+### In Android Studio / VS Code
+
+1.  Look for the **"Flutter"** dropdown menu in the toolbar. It's usually located near the run button and shows the currently selected device.
+2.  Next to this, you will find a dropdown for **"Flavors."** Click on it.
+3.  Choose either **`staging`** or **`production`** from the list. This selects the environment for your build.
+4.  Once you have selected the flavor, click the **"Run"** button to start the application with the chosen environment variables.
 
 -----
 
